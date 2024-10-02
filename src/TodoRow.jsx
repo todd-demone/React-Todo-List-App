@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-export default function TodoRow({ todo, onCheckboxChange }) {
+function TodoRow({ todo, onCheckboxChange }) {
   const strikethroughStyle = {
     textDecoration: "line-through",
   };
@@ -22,3 +22,5 @@ export default function TodoRow({ todo, onCheckboxChange }) {
     </li>
   );
 }
+
+export default TodoRow;
