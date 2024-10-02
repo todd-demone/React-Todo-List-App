@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import TodoRow from "./TodoRow";
+import TodoForm from "./TodoForm";
 
-export default function TodoTable() {
+function TodoTable() {
   const [todos, setTodos] = useState(TODOS);
-  const [newTodo, setNewTodo] = useState("");
+  // const [newTodo, setNewTodo] = useState("");
 
   function handleCheckboxChange(id) {
     setTodos(
@@ -14,9 +15,7 @@ export default function TodoTable() {
     );
   }
 
-  function handleAddTodo(event) {
-    event.preventDefault();
-    if (newTodo.trim() === "") return;
+  function handleAddTodo(newTodo) {
     const newTodoItem = {
       id: todos.length + 1,
       title: newTodo,
@@ -24,21 +23,12 @@ export default function TodoTable() {
       userId: 1,
     };
     setTodos([...todos, newTodoItem]);
-    setNewTodo("");
   }
 
   return (
     <>
       <h3>Todo List</h3>
-      <form onSubmit={handleAddTodo}>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-          placeholder="Add new todo"
-        />
-        <button type="submit">Add New Todo</button>
-      </form>
+      <TodoForm onAddTodo={handleAddTodo} />
       <ul>
         {todos.map((todo) => (
           <TodoRow
@@ -84,3 +74,5 @@ const TODOS = [
     completed: false,
   },
 ];
+
+export default TodoTable;
