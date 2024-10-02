@@ -1,5 +1,5 @@
-import TodoTable from "./TodoTable";
+import TodoList from "./TodoList";
 
 export default function App() {
-  return <TodoTable />;
+  return <TodoList />;
 }

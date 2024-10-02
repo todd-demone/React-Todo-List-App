@@ -1,8 +1,8 @@
 import { useState } from "react";
-import TodoRow from "./TodoRow";
+import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
 
-function TodoTable() {
+function TodoList() {
   const [todos, setTodos] = useState([]);
 
   function handleCheckboxChange(id) {
@@ -29,7 +29,7 @@ function TodoTable() {
       <TodoForm onAddTodo={handleAddTodo} />
       <ul>
         {todos.map((todo) => (
-          <TodoRow
+          <TodoItem
             key={todo.id}
             todo={todo}
             onCheckboxChange={handleCheckboxChange}
@@ -49,4 +49,4 @@ function TodoTable() {
 //   },
 // ];
 
-export default TodoTable;
+export default TodoList;
