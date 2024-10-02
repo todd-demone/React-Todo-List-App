@@ -4,6 +4,7 @@ import TodoRow from "./TodoRow";
 
 export default function TodoTable() {
   const [todos, setTodos] = useState(TODOS);
+  const [newTodo, setNewTodo] = useState("");
 
   function handleCheckboxChange(id) {
     setTodos(
@@ -13,9 +14,31 @@ export default function TodoTable() {
     );
   }
 
+  function handleAddTodo(event) {
+    event.preventDefault();
+    if (newTodo.trim() === "") return;
+    const newTodoItem = {
+      id: todos.length + 1,
+      title: newTodo,
+      completed: false,
+      userId: 1,
+    };
+    setTodos([...todos, newTodoItem]);
+    setNewTodo("");
+  }
+
   return (
     <>
       <h3>Todo List</h3>
+      <form onSubmit={handleAddTodo}>
+        <input
+          type="text"
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Add new todo"
+        />
+        <button type="submit">Add New Todo</button>
+      </form>
       <ul>
         {todos.map((todo) => (
           <TodoRow
