@@ -19,6 +19,7 @@ export default function UpdateForm({ todo, setIsEditing, onUpdateSubmit }) {
           onChange={(e) => setUpdateInput(e.target.value)}
         />
         <button type="submit">Save</button>
+        <button onClick={() => setIsEditing(false)}>Cancel</button>
       </form>
     </li>
   );
