@@ -1,8 +1,8 @@
 import { useState } from "react";
-import TodoItem from "./TodoItem";
-import TodoForm from "./TodoForm";
+import AddForm from "./AddForm";
+import TodoList from "./TodoList";
 
-function TodoApp() {
+export default function TodoApp() {
   const [todos, setTodos] = useState([]);
 
   function handleCompletedClick(id) {
@@ -39,18 +39,13 @@ function TodoApp() {
   return (
     <>
       <h1>Todo List</h1>
-      <TodoForm onAddSubmit={handleAddSubmit} />
-      <ul>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onCompletedClick={handleCompletedClick}
-            onDeleteClick={handleDeleteClick}
-            onUpdateSubmit={handleUpdateSubmit}
-          />
-        ))}
-      </ul>
+      <AddForm onAddSubmit={handleAddSubmit} />
+      <TodoList
+        todos={todos}
+        onCompletedClick={handleCompletedClick}
+        onDeleteClick={handleDeleteClick}
+        onUpdateSubmit={handleUpdateSubmit}
+      />
     </>
   );
 }
@@ -63,5 +58,3 @@ function TodoApp() {
 //     completed: false,
 //   },
 // ];
-
-export default TodoApp;
