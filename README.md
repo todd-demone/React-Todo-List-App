@@ -1,1 +1,1 @@
-# Todo App using React
+# React Todo List App
