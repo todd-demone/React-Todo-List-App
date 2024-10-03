@@ -1,11 +1,11 @@
 import { useState } from "react";
-import TodoList from "./TodoList";
+import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
 
 function TodoApp() {
   const [todos, setTodos] = useState([]);
 
-  function handleCheckboxChange(id) {
+  function handleToggleCompleted(id) {
     setTodos(
       todos.map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
@@ -13,7 +13,7 @@ function TodoApp() {
     );
   }
 
-  function handleNewTodoSubmit(newTodo) {
+  function handleAddTodo(newTodo) {
     if (!newTodo.trim()) return;
     const newTodoItem = {
       id: todos.length + 1,
@@ -24,14 +24,14 @@ function TodoApp() {
     setTodos([...todos, newTodoItem]);
   }
 
-  function handleDeleteButtonClick(id) {
+  function handleDeleteTodo(id) {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
-  function handleUpdateTodoSubmit(id, updateText) {
+  function handleUpdateTodo(id, updatedTodo) {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, title: updateText } : todo
+        todo.id === id ? { ...todo, title: updatedTodo } : todo
       )
     );
   }
@@ -39,13 +39,18 @@ function TodoApp() {
   return (
     <>
       <h1>Todo List</h1>
-      <TodoForm onNewTodoSubmit={handleNewTodoSubmit} />
-      <TodoList
-        todos={todos}
-        onCheckboxChange={handleCheckboxChange}
-        onDeleteButtonClick={handleDeleteButtonClick}
-        onUpdateTodoSubmit={handleUpdateTodoSubmit}
-      />
+      <TodoForm onAddTodo={handleAddTodo} />
+      <ul>
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggleCompleted={handleToggleCompleted}
+            onDeleteTodo={handleDeleteTodo}
+            onUpdateTodo={handleUpdateTodo}
+          />
+        ))}
+      </ul>
     </>
   );
 }
