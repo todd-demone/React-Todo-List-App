@@ -4,6 +4,7 @@ import TodoList from "./TodoList";
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
+  const [counter, setCounter] = useState(1);
 
   function handleCompletedClick(id) {
     setTodos(
@@ -16,12 +17,13 @@ export default function TodoApp() {
   function handleAddSubmit(newTodo) {
     if (!newTodo.trim()) return;
     const newTodoItem = {
-      id: todos.length + 1,
+      id: counter,
       title: newTodo,
       completed: false,
       userId: 1,
     };
     setTodos([...todos, newTodoItem]);
+    setCounter(counter + 1);
   }
 
   function handleDeleteClick(id) {
