@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateTodo }) {
+function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateSubmit }) {
   const [isEditing, setIsEditing] = useState(false);
   const [updateInput, setUpdateInput] = useState(todo.title);
 
@@ -25,7 +25,7 @@ function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateTodo }) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            onUpdateTodo(todo.id, updateInput);
+            onUpdateSubmit(todo.id, updateInput);
             setIsEditing(false);
           }}
         >
