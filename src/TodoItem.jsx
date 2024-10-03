@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import EditForm from "./EditForm";
+import UpdateForm from "./UpdateForm";
 
 export default function TodoItem({
   todo,
@@ -22,7 +22,7 @@ export default function TodoItem({
 
   if (isEditing) {
     return (
-      <EditForm
+      <UpdateForm
         todo={todo}
         setIsEditing={setIsEditing}
         onUpdateSubmit={onUpdateSubmit}
