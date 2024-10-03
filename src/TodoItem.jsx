@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import EditForm from "./EditForm";
 
-function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateSubmit }) {
+export default function TodoItem({
+  todo,
+  onCompletedClick,
+  onDeleteClick,
+  onUpdateSubmit,
+}) {
   const [isEditing, setIsEditing] = useState(false);
-  const [updateInput, setUpdateInput] = useState(todo.title);
 
   const strikethroughStyle = {
     textDecoration: "line-through",
@@ -15,28 +20,13 @@ function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateSubmit }) {
     <span style={strikethroughStyle}>{todo.title}</span>
   );
 
-  function handleEnableUpdateMode() {
-    setIsEditing(true);
-  }
-
   if (isEditing) {
     return (
-      <li>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onUpdateSubmit(todo.id, updateInput);
-            setIsEditing(false);
-          }}
-        >
-          <input
-            type="text"
-            value={updateInput}
-            onChange={(e) => setUpdateInput(e.target.value)}
-          />
-          <button type="submit">Save</button>
-        </form>
-      </li>
+      <EditForm
+        todo={todo}
+        setIsEditing={setIsEditing}
+        onUpdateSubmit={onUpdateSubmit}
+      />
     );
   } else {
     return (
@@ -47,11 +37,9 @@ function TodoItem({ todo, onCompletedClick, onDeleteClick, onUpdateSubmit }) {
           onChange={() => onCompletedClick(todo.id)}
         />
         {todoText}
-        <button onClick={handleEnableUpdateMode}>Edit</button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
         <button onClick={() => onDeleteClick(todo.id)}>Delete</button>
       </li>
     );
   }
 }
-
-export default TodoItem;
