@@ -4,7 +4,6 @@ import TodoForm from "./TodoForm";
 
 function TodoApp() {
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState("");
 
   function handleCheckboxChange(id) {
     setTodos(
@@ -14,7 +13,7 @@ function TodoApp() {
     );
   }
 
-  function handleNewTodoSubmit() {
+  function handleNewTodoSubmit(newTodo) {
     if (!newTodo.trim()) return;
     const newTodoItem = {
       id: todos.length + 1,
@@ -23,7 +22,6 @@ function TodoApp() {
       userId: 1,
     };
     setTodos([...todos, newTodoItem]);
-    setNewTodo("");
   }
 
   function handleDeleteButtonClick(id) {
@@ -41,11 +39,7 @@ function TodoApp() {
   return (
     <>
       <h1>Todo List</h1>
-      <TodoForm
-        newTodo={newTodo}
-        setNewTodo={setNewTodo}
-        onNewTodoSubmit={handleNewTodoSubmit}
-      />
+      <TodoForm onNewTodoSubmit={handleNewTodoSubmit} />
       <TodoList
         todos={todos}
         onCheckboxChange={handleCheckboxChange}
