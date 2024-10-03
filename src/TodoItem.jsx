@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-function TodoItem({ todo, onCheckboxChange }) {
+function TodoItem({ todo, onCheckboxChange, onDeleteButtonClick }) {
   const strikethroughStyle = {
     textDecoration: "line-through",
   };
@@ -19,6 +19,7 @@ function TodoItem({ todo, onCheckboxChange }) {
         onChange={() => onCheckboxChange(todo.id)}
       />
       {todoText}
+      <button onClick={() => onDeleteButtonClick(todo.id)}>Delete</button>
     </li>
   );
 }

@@ -26,6 +26,10 @@ function TodoApp() {
     setNewTodo("");
   }
 
+  function handleDeleteButtonClick(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <>
       <h1>Todo List</h1>
@@ -34,7 +38,11 @@ function TodoApp() {
         setNewTodo={setNewTodo}
         onNewTodoSubmit={handleNewTodoSubmit}
       />
-      <TodoList todos={todos} onCheckboxChange={handleCheckboxChange} />
+      <TodoList
+        todos={todos}
+        onCheckboxChange={handleCheckboxChange}
+        onDeleteButtonClick={handleDeleteButtonClick}
+      />
     </>
   );
 }
