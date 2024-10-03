@@ -30,6 +30,14 @@ function TodoApp() {
     setTodos(todos.filter((todo) => todo.id !== id));
   }
 
+  function handleUpdateTodoSubmit(id, updateText) {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, title: updateText } : todo
+      )
+    );
+  }
+
   return (
     <>
       <h1>Todo List</h1>
@@ -42,6 +50,7 @@ function TodoApp() {
         todos={todos}
         onCheckboxChange={handleCheckboxChange}
         onDeleteButtonClick={handleDeleteButtonClick}
+        onUpdateTodoSubmit={handleUpdateTodoSubmit}
       />
     </>
   );

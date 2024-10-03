@@ -1,7 +1,12 @@
 /* eslint-disable react/prop-types */
 import TodoItem from "./TodoItem";
 
-function TodoList({ todos, onCheckboxChange, onDeleteButtonClick }) {
+function TodoList({
+  todos,
+  onCheckboxChange,
+  onDeleteButtonClick,
+  onUpdateTodoSubmit,
+}) {
   return (
     <ul>
       {todos.map((todo) => (
@@ -10,6 +15,7 @@ function TodoList({ todos, onCheckboxChange, onDeleteButtonClick }) {
           todo={todo}
           onCheckboxChange={onCheckboxChange}
           onDeleteButtonClick={onDeleteButtonClick}
+          onUpdateTodoSubmit={onUpdateTodoSubmit}
         />
       ))}
     </ul>
