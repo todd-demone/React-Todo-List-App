@@ -8,7 +8,7 @@ function TodoItem({
   onUpdateTodoSubmit,
 }) {
   const [isUpdateMode, setIsUpdateMode] = useState(false);
-  const [updateBox, setUpdateBox] = useState(todo.title);
+  const [updateBoxText, setUpdateBoxText] = useState(todo.title);
 
   const strikethroughStyle = {
     textDecoration: "line-through",
@@ -30,14 +30,14 @@ function TodoItem({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            onUpdateTodoSubmit(todo.id, updateBox);
+            onUpdateTodoSubmit(todo.id, updateBoxText);
             setIsUpdateMode(false);
           }}
         >
           <input
             type="text"
-            value={updateBox}
-            onChange={(e) => setUpdateBox(e.target.value)}
+            value={updateBoxText}
+            onChange={(e) => setUpdateBoxText(e.target.value)}
           />
           <button type="submit">Save</button>
         </form>
