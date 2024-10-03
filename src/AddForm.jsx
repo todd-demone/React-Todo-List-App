@@ -18,7 +18,7 @@ export default function AddForm({ onAddSubmit }) {
         onChange={(e) => setAddInput(e.target.value)}
         placeholder="Add new todo"
       />
-      <button type="submit">Add New Todo</button>
+      <button type="submit">Add Todo</button>
     </form>
   );
 }
