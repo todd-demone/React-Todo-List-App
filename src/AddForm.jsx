@@ -17,6 +17,7 @@ export default function AddForm({ onAddSubmit }) {
         value={addInput}
         onChange={(e) => setAddInput(e.target.value)}
         placeholder="Add new todo"
+        autoFocus={true}
       />
       <button type="submit">Add Todo</button>
     </form>
