@@ -31,14 +31,19 @@ export default function TodoItem({
   } else {
     return (
       <li>
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onCompletedClick(todo.id)}
-        />
-        {todoText}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
-        <button onClick={() => onDeleteClick(todo.id)}>Delete</button>
+        <div className="flex-todo-item">
+          {/* <div className="completed-checkbox"> */}
+          <input
+            type="checkbox"
+            className="completed-checkbox"
+            checked={todo.completed}
+            onChange={() => onCompletedClick(todo.id)}
+          />
+          {/* </div> */}
+          {todoText}
+          <button onClick={() => setIsEditing(true)}>Edit</button>
+          <button onClick={() => onDeleteClick(todo.id)}>Delete</button>
+        </div>
       </li>
     );
   }
